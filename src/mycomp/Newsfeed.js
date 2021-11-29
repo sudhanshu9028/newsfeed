@@ -50,7 +50,7 @@ export const Newsfeed = () => {
   };
   useEffect(() => {
     axios
-      .get("https://api.first.org/data/v1/news")
+      .get("https://newsapi.org/v2/everything?q=Apple&from=2021-11-29&sortBy=popularity&apiKey=5c83c765602d48e6b0301df05995060d")
       .then((res) => setData(res.data.data))
       .catch();
   }, []);
