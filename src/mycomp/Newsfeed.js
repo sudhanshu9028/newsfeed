@@ -50,10 +50,8 @@ export const Newsfeed = () => {
   };
   useEffect(() => {
     axios
-      .get(
-        "https://newsapi.org/v2/top-headlines?country=in&apiKey=5c83c765602d48e6b0301df05995060d"
-      )
-      .then((res) => setData(res.data.articles))
+      .get("https://jsonplaceholder.typicode.com/posts")
+      .then((res) => setData(res.data))
       .catch();
   }, []);
   // console.log(data);
@@ -61,9 +59,9 @@ export const Newsfeed = () => {
   const ioffirst = ioflast - postPerP;
   const currData = data.slice(ioffirst, ioflast);
   const pageNo = [];
-  pageNo.push(1);
-  pageNo.push(2);
-  pageNo.push(3);
+  for (let i = 1; i <= 16; i++) {
+    pageNo.push(i);
+  }
   const paginate = (number) => {
     setCurrPage(number);
   };
@@ -73,10 +71,10 @@ export const Newsfeed = () => {
         {currData.map((value, index) => {
           return (
             <>
-              <a href={value.url}>
+              <a>
                 <div className="card">
                   <h4>{value.title}</h4>
-                  <p>{value.description}</p>
+                  <p>{value.body}</p>
                 </div>
               </a>
             </>
