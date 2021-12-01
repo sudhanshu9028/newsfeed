@@ -50,8 +50,10 @@ export const Newsfeed = () => {
   };
   useEffect(() => {
     axios
-      .get("https://newsapi.org/v2/everything?q=Apple&from=2021-11-29&sortBy=popularity&apiKey=5c83c765602d48e6b0301df05995060d")
-      .then((res) => setData(res.data.data))
+      .get(
+        "https://newsapi.org/v2/top-headlines?country=in&apiKey=5c83c765602d48e6b0301df05995060d"
+      )
+      .then((res) => setData(res.data.articles))
       .catch();
   }, []);
   // console.log(data);
@@ -59,9 +61,9 @@ export const Newsfeed = () => {
   const ioffirst = ioflast - postPerP;
   const currData = data.slice(ioffirst, ioflast);
   const pageNo = [];
-  for (let i = 1; i <= Math.ceil(100 / 6); i++) {
-    pageNo.push(i);
-  }
+  pageNo.push(1);
+  pageNo.push(2);
+  pageNo.push(3);
   const paginate = (number) => {
     setCurrPage(number);
   };
@@ -71,10 +73,10 @@ export const Newsfeed = () => {
         {currData.map((value, index) => {
           return (
             <>
-              <a href={value.link}>
+              <a href={value.url}>
                 <div className="card">
                   <h4>{value.title}</h4>
-                  <p>{value.summary}</p>
+                  <p>{value.description}</p>
                 </div>
               </a>
             </>
