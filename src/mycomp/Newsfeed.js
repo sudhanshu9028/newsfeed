@@ -10,7 +10,7 @@ export const Newsfeed = () => {
     var phone = document.getElementById("tele");
     var OK = reg.match(phone);
     if (!OK) {
-      window.alert("phone number isn't  valid");
+      window.alert("phone number is not valid!");
     } else {
       window.alert("phone number is  valid");
     }
